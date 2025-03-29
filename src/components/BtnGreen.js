@@ -1,11 +1,17 @@
 import React from "react";
 import "./Btn.css";
 
-const BtnGreen = ({ children, onClick, customButtonClass }) => {
+const BtnGreen = ({ children, onClick, href, customButtonClass = "" }) => {
   return (
-    <button className={`${"custom-button green"} ${customButtonClass}`}  onClick={onClick}>
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`custom-button green ${customButtonClass}`}
+      onClick={onClick}
+    >
       {children}
-    </button>
+    </a>
   );
 };
 

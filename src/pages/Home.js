@@ -1,28 +1,70 @@
 import React, { useEffect, useState } from "react";
 import { fetchPageData } from "../services/contentfulService.js"; // Importa o serviço
+import { useLocation } from "react-router-dom";
 
 import "./Home.css";
-import BtnGreen from "../components/BtnGreen";
-import BtnWhite from "../components/BtnWhite";
-import CarouselComponent from "../components/Carousel";
-import { aboutUsSections, advantages, services} from "../components/constants/index.js";
+import Btn from "../components/Btn";
+import Gallery from "../components/Gallery";
+import Testimonials from "../components/Testimonials.js";
+import { aboutUsSections, advantages } from "../components/constants/index.js";
+import { sendContactFormToAirtable } from "../services/airtableService.js";
 
 function Home() {
   const [data, setData] = useState(null);
 
+  const aboutUsSection = aboutUsSections;
+
   const getData = async () => {
     try {
       const result = await fetchPageData("home");
-      console.log("dados retornados", result);
-      setData(result);
+      setData(result.data);
     } catch (error) {
       console.error(`Error fetching data:`, error.response || error.message);
     }
   };
 
+  const handleFormSubmit = async (event) => {
+    event.preventDefault(); // Evita o recarregamento da página
+
+    // Coleta os dados do formulário
+    const form = event.target; // Referência ao formulário enviado
+    const formData = new FormData(form); // Extrai os dados do formulário
+    const record = Object.fromEntries(formData.entries()); // Converte para objeto
+
+    // Verifica se os campos obrigatórios estão preenchidos
+    if (!record.name || !record.email || !record.message) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
+    // Envia os dados para o Airtable
+    try {
+      const response = await sendContactFormToAirtable(record);
+      console.log("Record added successfully:", response);
+      alert("Your message has been sent successfully!");
+      form.reset(); // Limpa o formulário após o envio bem-sucedido
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("There was an error sending your message. Please try again later.");
+    }
+  };
+
+  const checkHash = () => {
+    setTimeout(() => {
+      if (window.location.hash) {
+        const element = document.querySelector(window.location.hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }, 100);
+  };
+  const location = useLocation();
+
   useEffect(() => {
     getData();
-  }, []);
+    checkHash();
+  }, [location]);
 
   if (!data) {
     return <p>Loading...</p>;
@@ -37,66 +79,122 @@ function Home() {
       ? data.homepageCollection.items[0]
       : null;
 
-  if (homeData) {
-    console.log("homeData", homeData);
-  } else {
-    console.error("homeData não encontrado ou está vazio.");
-  }
-
-  // // Supondo que o formato do `data` siga o mesmo padrão do Contentful
-  // const homeData = data?.homepageCollection?.items[0];
-  // console.log("homeData", homeData);
+  const testimonialData = homeData.testimonialsCollection.items;
 
   return (
-    <div>
-      {/* Banner hero */}
-      <div className="banner">
-        <div className="content">
-          <h1 className="bannerTitle">{homeData.title}</h1>
-          <h5 className="bannerDescrip">{homeData.subtitle}</h5>
-          <BtnGreen customButtonClass="customButtonClass">Our Services</BtnGreen>
-        </div>
-        <img src={homeData.heroImage.url} alt={homeData.heroImage.title}></img>
-      </div>
-      {/* About US */}
-      <div className="about-us">
-        <h2>About Us</h2>
-        {aboutUsSections.map((section, index) => (
-          <div
-            key={index}
-            className={`about-us-content ${section.containerClass}`}
-          >
+    <>
+      <div>
+        {/* Banner hero */}
+        <div className="banner">
+          <div className="content">
+            <h1 className="bannerTitle">{homeData.title}</h1>
+            <h5 className="bannerDescrip">{homeData.subtitle}</h5>
+            <Btn customButtonClass="green" href="#our-services">
+              Our Services
+            </Btn>
+          </div>
+          {/* Hero image */}
+          <img
+            src={homeData.heroImage.url}
+            alt={homeData.heroImage.title}
+          ></img>
+        </div>{" "}
+        {/* About Us */}
+        <div className="about-us">
+          <h2>About Us</h2>
+          {/* top left */}
+          <div className={`about-us-content about-us-top`}>
             <img
-              src={section.imgSrc}
-              alt={section.altText}
-              className={`about-us-img-custom ${section.imgClass}`}
+              src={homeData.aboutUsImageOne.url}
+              alt={homeData.aboutUsImageOne.title}
+              className={`about-us-img-custom about-us-img-left`}
             />
-            <div className={`about-us-text ${section.textClass}`}>
-              <h5 className={`${section.h5Style} ${section.isButtonVisible ? '' : 'mobile-none'}`}>
-                {section.title}
+            <div className={`about-us-text about-us-top-right`}>
+              <h5 className={`special-style ${false ? "" : "mobile-none"}`}>
+                {homeData.aboutUsTitleOne ? homeData.aboutUsTitleOne : ""}
               </h5>
-              <p className={section.isButtonVisible ? '' : 'mobile-none'}>
-                {section.description}
-              </p>
-              {section.isButtonVisible && <BtnGreen>Learn More</BtnGreen>}
+              <p
+                className={true ? "" : "mobile-none"}
+                dangerouslySetInnerHTML={{
+                  __html: homeData.aboutUsParagraphOne.json.content[0]
+                    .content[0].value
+                    ? homeData.aboutUsParagraphOne.json.content[0].content[0]
+                        .value
+                    : "",
+                }}
+              ></p>
+              {aboutUsSection.isButtonVisible && (
+                <Btn customButtonClass="green">Learn More</Btn>
+              )}
             </div>
           </div>
-        ))}
+          {/* botton right */}
+          <div className={` about-us-bottom`}>
+            <img
+              src={homeData.aboutUsImageTwo.url}
+              alt={homeData.aboutUsImageTwo.title}
+              className={`about-us-img-custom about-us-img-left`}
+            />
+            <div className={`about-us-text about-us-bottom-left`}>
+              <h5 className={`special-style ${false ? "" : "mobile-none"}`}>
+                {homeData.aboutUsTitleTwo ? homeData.aboutUsTitleTwo : ""}
+              </h5>
+              <p
+                className={true ? "" : "mobile-none"}
+                dangerouslySetInnerHTML={{
+                  __html: homeData.aboutUsParagraphTwo.json.content[0]
+                    .content[0].value
+                    ? homeData.aboutUsParagraphTwo.json.content[0].content[0]
+                        .value
+                    : "",
+                }}
+              ></p>
+
+              <Btn customButtonClass="green" href="/about">
+                Learn More
+              </Btn>
+            </div>
+          </div>
+        </div>
       </div>
+
       {/* Our Services */}
-      <div className="our-services">
+      <div className="our-services" id="our-services">
         <h2>Our Services</h2>
-        {services.map((service, index) => (
-          <div className={service.containerClass} key={index}>
-            <img src={service.imgSrc} alt="" />
-            <div className={service.contentClass}>
-              <h5 className={service.h5Style}>{service.title}</h5>
-              <p>{service.description}</p>
-              {service.btnComponent}
+        {homeData.ourServicesCollection.items.map((service, index) => {
+          const colorStyle =
+            index % 2 === 0 ? "green-services" : "white-services";
+
+          const buttonStyle = index % 2 === 0 ? "white" : "green";
+
+          return (
+            <div className={`our-services ${colorStyle}`} key={index}>
+              <img
+                src={service.image.url}
+                alt={service.image.title}
+                className="service-image"
+              />
+              <div className="service-content">
+                <h5>{service.title}</h5>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: service.paragraphy.json.content[0].content[0].value
+                      ? service.paragraphy.json.content[0].content[0].value
+                      : "",
+                  }}
+                ></p>
+                <Btn
+                  href={`/service/${service.slug}`}
+                  customButtonClass={buttonStyle}
+                >
+                  Learn More
+                </Btn>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
+
       {/* Our Advantages */}
       <div className="advantages">
         <h2>Our Advantages</h2>
@@ -111,53 +209,61 @@ function Home() {
         </div>
       </div>
       {/* Testimonials */}
-      <CarouselComponent />
-      {/* Gallery */}
-      <div className="our-gallery">
-        <h2>Our Gallery</h2>
-        <div className="gallery">
-          <img src="images/our-gallery-01.webp" alt="" id="img1" />
-          <img src="images/our-gallery-02.webp" alt="" id="img2" />
-          <img src="images/our-gallery-03.webp" alt="" id="img3" />
-          <img src="images/our-gallery-04.webp" alt="" id="img4" />
-          <img src="images/our-gallery-05.webp" alt="" id="img5" />
-          <img src="images/our-gallery-06.webp" alt="" id="img6" />
-        </div>
-      </div>
-      {/* Contact Us */}
+      <Testimonials testimonialData={testimonialData} />
 
-      <div className="contact">
+      {/* Gallery */}
+
+      <Gallery />
+
+      {/* Contact Us */}
+      <div className="contact" id="contact">
         <h2>Contact us</h2>
         <p>Fill out the form and we will contact you as soon as possible!</p>
-        <form>
+        <form onSubmit={handleFormSubmit}>
           <div className="name-email">
             <div className="form-group">
-              <label for="name">Name</label>
-              <input type="text" placeholder="Name" />
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Name"
+                required
+              />
             </div>
-
             <div className="form-group">
-              <label for="name">Email</label>
-              <input type="email" placeholder="Email" />
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email"
+                required
+              />
             </div>
           </div>
-
-          <div className="form-group-phone">
-            <label for="name">Phone</label>
-            <input type="phones" placeholder="Phone" />
-          </div>
-
           <div className="form-group">
-            <label for="name">Message</label>
-            <textarea placeholder="How can we help you today?"></textarea>
+            <label htmlFor="phone">Phone</label>
+            <input type="text" id="phone" name="phone" placeholder="Phone" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="How can we help you today?"
+              required
+            ></textarea>
           </div>
           <div className="btn-send">
-            <BtnWhite>Send</BtnWhite>
+            <Btn type="submit" customButtonClass="white">
+              Send
+            </Btn>
           </div>
         </form>
       </div>
       <div className="blank"></div>
-    </div>
+    </>
   );
 }
 

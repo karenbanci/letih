@@ -2,6 +2,8 @@ import React from "react";
 import "./Layout.css";
 import data from "../data.json";
 import { Link, useLocation } from "react-router-dom";
+import { footerLinks } from "../components/constants/index.js";
+import Navbar from "./Navbar.js";
 
 // import { Link } from "react-router-dom";
 
@@ -15,7 +17,8 @@ const Layout = ({ children }) => {
 
   return (
     <div>
-      <header></header>
+      <Navbar />
+
       <main>{children}</main>
       <footer>
         <div>
@@ -45,13 +48,26 @@ const Layout = ({ children }) => {
               <p>{phone}</p>
             </div>
           </div>
+          <ul className=" footer-social">
+            {footerLinks.map((item) => (
+              <li key={item.id}>
+                <a href={item.url} target="_blank" rel="noreferrer">
+                  <img src={item.icon} alt={item.title} />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
         <p id="copyright">
           COPYRIGHT © <span>{year}</span> {copyright}
           <br></br>
           <span>{developedBy.title}</span>{" "}
-          <a href={developedBy.url} target="_blank" rel="noreferrer">
-            {developedBy.name}
+          <a href={developedBy.karenUrl} target="_blank" rel="noreferrer">
+            {developedBy.karen}
+          </a>{" "}
+          &
+          <a href={developedBy.victorUrl} target="_blank" rel="noreferrer">
+            {developedBy.victor}
           </a>
         </p>
       </footer>

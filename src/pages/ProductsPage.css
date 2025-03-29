@@ -1,0 +1,71 @@
+@import "../style.css";
+
+.products-page {
+  margin: 80px 100px;
+  h1 {
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+    text-transform: capitalize !important;
+  }
+
+  .top-container {
+    display: flex;
+    flex-direction: row;
+
+    img {
+      height: 345px;
+    }
+
+    .description {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      margin-left: 70px;
+
+      p {
+        line-height: 24px;
+      }
+
+      img {
+        width: 147px;
+        height: 50px;
+      }
+    }
+    .image-link {
+      margin-left: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+
+      a {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 34px; /* 212.5% */
+        margin-top: 120px;
+        color: var(--green-100);
+      }
+    }
+  }
+
+  .bottom-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 80px;
+
+    h2 {
+      font-family: Raleway;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 34px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  }
+}

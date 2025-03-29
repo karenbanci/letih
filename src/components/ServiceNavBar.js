@@ -1,21 +1,3 @@
-/**
- * ServiceMobileNavbar Component
- *
- * This component is responsible for rendering a responsive navigation bar
- * for the "FACIALS" section of the application. It switches between
- * a desktop and a mobile version based on the screen size.
- *
- * The desktop version displays a horizontal navigation menu, while the
- * mobile version presents a more compact layout suitable for smaller
- * screens. Each navigation item is linked to corresponding URLs
- * specified in the data.json file.
- *
- * Features:
- * - Responsive design using media queries
- * - Active link highlighting based on the current route
- * - Supports nested navigation (future implementations)
- */
-
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
@@ -58,25 +40,25 @@ const MobileServiceNavbar = () => {
 
   return (
     <>
-    <div className="service-navbar-mobile">
-      <div className="service-navbar-container">
-        <nav className="mobile-center-logo">
+      <div className="service-navbar-mobile">
+        <div className="service-navbar-container">
+          <nav className="mobile-center-logo">
             <h1>FACIALS</h1>
-        </nav>
-        <ul className="mobile-main-nav-items">
-          {navItems.map((item) => (
-            <li key={item.id} className="mobile-items">
-              <Link
-                className={location.pathname === item.url ? "active" : ""}
-                to={item.url}
-              >
-              {item.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
+          </nav>
+          <ul className="mobile-main-nav-items">
+            {navItems.map((item) => (
+              <li key={item.id} className="mobile-items">
+                <Link
+                  className={location.pathname === item.url ? "active" : ""}
+                  to={item.url}
+                >
+                  {item.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-    </div>
     </>
   );
 };

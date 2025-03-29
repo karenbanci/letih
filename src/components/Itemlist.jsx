@@ -59,7 +59,7 @@ const ItemList = ({
   titleComponent: TitleComponent,
   descriptionComponent: DescriptionComponent,
   containerClass,
-  isList
+  isList,
 }) => {
   if (!Array.isArray(items) || items.length === 0) {
     return <p>No benefits available.</p>;
@@ -69,24 +69,25 @@ const ItemList = ({
     <div className={containerClass}>
       {isList ? (
         <ul>
-          {items.map((item) => {
+          {items.map((item, index) => {
             if (!item || (!item.title && !item.description)) {
               return null;
             }
             return (
-              <li key={item.id}>
+              <li key={item.id || index}>
                 {TitleComponent ? (
                   <TitleComponent item={item}>{item.title}</TitleComponent>
                 ) : (
                   <h3>{item.title}</h3>
                 )}
-                {item.description && (
-                  DescriptionComponent ? (
-                    <DescriptionComponent>{item.description}</DescriptionComponent>
+                {item.description &&
+                  (DescriptionComponent ? (
+                    <DescriptionComponent>
+                      {item.description}
+                    </DescriptionComponent>
                   ) : (
                     <p>{item.description}</p>
-                  )
-                )}
+                  ))}
               </li>
             );
           })}
@@ -103,13 +104,14 @@ const ItemList = ({
               ) : (
                 <h3>{item.title}</h3>
               )}
-              {item.description && (
-                DescriptionComponent ? (
-                  <DescriptionComponent>{item.description}</DescriptionComponent>
+              {item.description &&
+                (DescriptionComponent ? (
+                  <DescriptionComponent>
+                    {item.description}
+                  </DescriptionComponent>
                 ) : (
                   <p>{item.description}</p>
-                )
-              )}
+                ))}
             </div>
           );
         })

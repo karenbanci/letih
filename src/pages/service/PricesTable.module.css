@@ -1,0 +1,110 @@
+.prices {
+  width: 1030px;
+  margin: 0 160px 60px;
+  justify-content: center;
+  border: 1px solid black;
+}
+
+p {
+  margin-bottom: 5px;
+}
+
+.pricesContainer {
+  align-items: flex-start;
+  margin: 32px 24px 32px 24px;
+
+  h2 {
+    color: var(--black-100);
+    font-family: "Roboto Serif";
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 85.714% */
+    text-transform: capitalize;
+    text-align: center;
+  }
+}
+.pricesDescription {
+  padding-left: 24px;
+
+  p {
+    width: 365px;
+    padding-left: 20px;
+  }
+}
+.priceInfo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  gap: 20px;
+
+  .myLine {
+    flex-grow: 1;
+    margin: 0 20px 0 0;
+    border: none;
+    height: 2px;
+    width: 1070px;
+    background-color: black;
+  }
+  .serviceRates {
+    text-align: right;
+    margin: 0;
+  }
+  p {
+    width: 365px;
+    padding-left: 20px;
+  }
+}
+
+@media (max-width: 430px) {
+  .serviceIncluded {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: initial;
+    padding: 0;
+  }
+
+  .serviceIncludedContent {
+    max-width: 358px;
+    margin: 60px 16px 120px 16px;
+
+    .serviceIncludedWarning {
+      margin: 40px 0px 0px 0px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .material-symbols-outlined {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding-bottom: 16px;
+        }
+      }
+    }
+  }
+
+  .serviceSteps {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    width: 358px;
+    padding: 0;
+
+    .detail-item {
+      width: 358px;
+    }
+  }
+
+  .serviceTitle {
+    margin-bottom: 32px;
+    padding-left: 0px;
+  }
+}

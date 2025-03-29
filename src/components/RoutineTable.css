@@ -1,0 +1,118 @@
+@import "../style.css";
+
+.container {
+  width: 100%;
+}
+
+a {
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  color: var(--green-100);
+  margin: -3px;
+}
+
+.routine-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  border: 1px solid var(--green-50);
+
+  thead {
+    background-color: var(--green-100);
+    color: var(--white-200);
+  }
+}
+
+.routine-table th,
+.routine-table td {
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  padding: 10px 30px;
+}
+
+th {
+  padding: auto 0px !important;
+}
+
+td {
+  border-right: transparent;
+  border-left: transparent;
+  border-top: 1px solid var(--green-50);
+}
+
+.top-morning,
+.top-night {
+  background-color: var(--green-50);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.routine-section h2 {
+  color: var(--white-200);
+  text-transform: capitalize !important;
+  letter-spacing: 1px;
+}
+
+.days-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 5px;
+  margin: 20px 0px;
+  width: 100%;
+}
+
+.how-to-use-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  td {
+    color: var(--green-100);
+  }
+}
+
+.product {
+  width: 20%;
+}
+
+.how-to-use {
+  width: 50%;
+}
+
+.where-to-buy {
+  width: 20%;
+}
+
+.day {
+  display: inline-block;
+  font-size: 40px;
+}
+
+.day.active {
+  color: var(--green-100);
+}
+
+.routine-section {
+  margin: 20px 60px;
+
+  img {
+    margin-right: 20px;
+  }
+}
+
+.routine-section.morning {
+  border-radius: 8px;
+  border-color: var(--green-100);
+}
+
+.routine-section.night {
+  background-color: var(--white-200);
+  margin-top: -20px;
+}

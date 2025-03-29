@@ -1,0 +1,357 @@
+@import "../style.css";
+
+.booking-container {
+  height: 820px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color: var(--grey-300) 10%;
+
+  img {
+    width: 45%;
+  }
+
+  /* Container para os passos */
+  /* Container principal da barra de progresso */
+  .progress-bar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px; /* Ajuste conforme necessário */
+    margin: 20px auto;
+    position: relative;
+
+    /* Cada item de etapa */
+    .step-item {
+      display: flex;
+      align-items: center;
+      position: relative;
+      flex: 1;
+      text-align: center;
+    }
+
+    /* Círculo de cada etapa */
+    .step-circle {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: var(--white-200) fff;
+      border: 2px solid var(--green-100);
+      z-index: 1;
+    }
+
+    /* Linha entre os círculos */
+    .step-line {
+      position: absolute;
+      top: 50%;
+      left: 16px; /* Começa do lado do círculo */
+      width: calc(100% - 10px); /* Ajusta para não ultrapassar os círculos */
+      height: 2px;
+      background-color: var(--green-100);
+      z-index: 0;
+      transform: translateY(-50%);
+    }
+
+    /* Adiciona a linha apenas entre os itens */
+    .step-item:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 56%;
+      transform: translateX(-50%);
+      width: calc(100% - 12px);
+      height: 1px;
+      background-color: var(--grey-200);
+      z-index: 0;
+    }
+
+    /* Etapas completadas */
+    .step-item.completed .step-circle {
+      background-color: var(--green-100);
+      border-color: var(--green-100);
+    }
+
+    .step-item.completed::after {
+      background-color: var(--green-100);
+    }
+
+    h4 {
+      font-size: 16px;
+      font-weight: 100;
+      margin-bottom: 40px;
+      margin-left: -30px;
+      color: var(--green-50);
+    }
+  }
+
+  h1 {
+    margin-top: 60px;
+  }
+  .booking-steps {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 55%;
+    padding: 0 50px;
+    justify-content: flex-start;
+  }
+
+  select {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    border: 1px solid var(--grey-300);
+    border-radius: 8px;
+    background-color: var(--white-200);
+    font-size: 16px;
+    font-family: "Arial", sans-serif;
+    color: var(--black-200);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    width: 604px;
+    height: 50px;
+  }
+
+  /* Adiciona um ícone de seta no canto direito */
+  select::-ms-expand {
+    display: none;
+    color: var(--black-200);
+  }
+
+  select:focus {
+    outline: none; /* Remove a borda azul de foco */
+    border: 1px solid var(--green-50); /* Altera a borda no foco */
+  }
+
+  /* Adiciona uma seta usando pseudo-elementos */
+  select::after {
+    content: "";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--green-50); /* Cor da seta */
+    pointer-events: none;
+  }
+}
+
+.step-1-select-service {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  margin: 280px 0 0 330px;
+  width: 150px;
+  height: 60px;
+}
+
+.green-step-2-select-time {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  margin: 333px 0 0 -130px;
+  width: 150px;
+  height: 60px;
+}
+
+.white-step-2-select-time {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  margin: 333px 0 0 0;
+  left: 240px;
+  width: 150px;
+  height: 60px;
+  border: 1px solid var(--green-100);
+}
+
+.white-step-3-details {
+  background-color: var(--white-200);
+  color: #333;
+  border: 1px solid var(--green-100);
+  width: 150px;
+  height: 60px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.white-step-3-details .white-step-2-select-time:hover {
+  background-color: var(--green-100);
+}
+
+.green-step-3-details {
+  background-color: var(--green-100);
+  color: var(--white-200);
+  border: 2px solid var(--green-100);
+  padding: 10px 20px;
+  font-size: 16px;
+  width: 150px;
+  height: 60px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.green-step-3-details:hover {
+  background-color: var(--green-100);
+}
+
+.calendar-container {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  font-family: Arial, sans-serif;
+  background-color: var(--white-200);
+  border-radius: 8px;
+  /* border: 1px solid var(--grey-300); */
+  padding: 16px;
+}
+
+.calendar {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.calendar-day {
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: var(--white-200);
+  transition: background-color 0.3s;
+}
+
+.calendar-day:hover {
+  background-color: var(--white-200);
+  border-radius: 50%;
+  background-color: var(--green-100);
+}
+
+.calendar-day.selected {
+  background-color: var(--green-100);
+  color: var(--white-200);
+  border-radius: 50%;
+}
+.time-slots {
+  #title {
+    font-weight: bold;
+  }
+
+  .time-slot {
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--white-200);
+    transition: background-color 0.3s;
+  }
+
+  .time-slot:active {
+    background-color: var(--green-100);
+    color: var(--white-200);
+  }
+
+  .time-slot.selected {
+    background-color: var(--green-100);
+    color: var(--white-200);
+  }
+}
+
+/* Contêiner geral */
+.user-details-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: var(--white-200);
+  border-radius: 10px;
+}
+
+/* Resumo da reserva */
+.booking-summary {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Formulário */
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.booking-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.booking-form input,
+.booking-form textarea {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid var(--grey-300);
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.booking-form input::placeholder,
+.booking-form textarea::placeholder {
+  color: var(--grey-300);
+}
+
+.booking-form textarea {
+  resize: none;
+  height: 80px;
+}
+
+/* Linha de formulário para campos lado a lado */
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.form-group {
+  flex: 1;
+}
+
+/* Botões */
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+@media (max-width: 992px) {
+}

@@ -1,7 +1,6 @@
 body {
   margin: 0;
   padding: 0;
-
 }
 .navbar-wrapper {
   width: 100%;
@@ -9,12 +8,10 @@ body {
 }
 .navbar-desktop {
   display: flex;
-  width: 100%;
-  max-width: 1500px;
+  width: 100vw;
   height: 80px;
   justify-content: space-between;
   align-items: center;
-
   z-index: 1000;
   position: relative;
   margin: 0 auto;
@@ -25,9 +22,14 @@ body {
   color: var(--green-100);
   font-size: 16px;
   font-weight: 400;
-  margin: 0;
   position: relative;
 }
+
+#myAccount-btn {
+  white-space: nowrap;
+  /* margin-bottom: 8px; */
+}
+
 button {
   background: none;
   border: none;
@@ -42,15 +44,15 @@ button {
   display: flex;
   justify-content: space-between;
   list-style: none;
-  margin-bottom: 9px;
-  padding: 0;
-  width: 448px;
   height: 27px;
   flex-shrink: 0;
+  width: 500px;
 }
 
 .navbar-desktop .items {
   position: relative;
+  /* margin-left: 20px; */
+  width: 80px;
 }
 .navbar-desktop .service-toggle {
   cursor: pointer;
@@ -59,9 +61,8 @@ button {
 .navbar-desktop .dropdown {
   display: none;
   position: absolute;
-  background: white;
-  border: 1px solid #ccc;
-
+  background: var(--white-200);
+  border: 1px solid var(--grey-300);
   width: 200px;
   margin-top: 5px;
 }
@@ -73,8 +74,8 @@ button {
 .navbar-desktop .submenu {
   display: none;
   position: absolute;
-  background: white;
-  border: 1px solid #ccc;
+  background: var(--white-200);
+  border: 1px solid var(--grey-300);
   width: 200px;
   top: 0;
   left: 100%;
@@ -93,14 +94,14 @@ button {
   display: block;
   padding: 10px;
   text-decoration: none;
-  color: black;
+  color: var(--black-300);
 }
 .navbar-desktop .submenu-item button {
   display: block;
   width: 100%;
   padding: 10px;
   text-decoration: none;
-  color: black;
+  color: var(--black-300);
   background: transparent;
   border: none;
   text-align: left;
@@ -108,8 +109,8 @@ button {
 
 .navbar-desktop .submenu-item button:hover,
 .navbar-desktop .submenu-item .submenu-link:hover {
-  background-color: #154734;
-  color: white;
+  background-color: var(--green-100);
+  color: var(--white-200);
 }
 
 .navbar-desktop .dropdown .submenu-item {
@@ -119,20 +120,21 @@ button {
     display: block;
     padding: 10px;
     text-decoration: none;
-    color: black;
+    color: var(--black-300);
   }
   .submenu-link:hover {
-    background-color: #154734;
-    color: white;
+    background-color: var(--green-100);
+    color: var(--white-200);
   }
   a:hover {
-    background-color: #154734;
-    color: white;
+    background-color: var(--green-100);
+    color: var(--white-200);
   }
 }
 
 .navbar-desktop .center-logo {
-  padding-left: 150px;
+  padding-left: 128px;
+  width: 600px;
 }
 
 .navbar-desktop .center-logo h3 {
@@ -146,7 +148,7 @@ button {
   margin-right: 10px;
 }
 
-.navbar-desktop  a.active::after {
+.navbar-desktop a.active::after {
   content: "";
   display: block;
   width: 30px;
@@ -158,20 +160,19 @@ button {
   left: 50%;
   transform: translateX(-50%);
 }
-.login-signup-buttons{
-  width: 239px;
+
+.myAccount-buttons {
+  width: 385px;
   display: flex;
   align-items: center;
   gap: 24px;
   margin-right: 127px;
 }
 
-
-
 @media (max-width: 430px) {
-.navbar-desktop .center-logo{
-  padding-left: 16px;
-  h3 {
+  .navbar-desktop .center-logo {
+    padding-left: 16px;
+    h3 {
       display: inline-block;
       letter-spacing: 2px !important;
       white-space: nowrap;
@@ -218,7 +219,7 @@ button {
   padding: 50px 24px 0px 0px;
 }
 .modal-content {
-  background: #fff
+  background: var(--white-200);
 }
 .modal-content ul {
   list-style-type: none;
@@ -231,17 +232,17 @@ button {
 }
 
 .modal-content li a {
-  color: black;
+  color: var(--black-300);
 }
 
 .modal-content li:hover {
-  background-color: #154734;
+  background-color: var(--green-100);
 }
 
 .modal-content li:hover a {
-  color: white;
+  color: var(--white-200);
 }
 
 .modal-content li a:hover {
-  color: white;
+  color: var(--white-200);
 }

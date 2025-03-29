@@ -1,0 +1,227 @@
+@import "../style.css";
+
+.testimonial-container {
+  background-color: var(--green-100);
+  width: 100vw;
+  display: flex;
+  gap: 50px;
+  margin: auto;
+  overflow: hidden;
+  justify-content: center;
+}
+
+.carousel-item {
+  width: 100vw;
+  display: flex;
+  width: 90vw;
+  justify-content: space-evenly;
+
+  /* margin-top: 80px; */
+
+  img {
+    /* width: 45%; */
+    height: 544px;
+    flex-shrink: 0;
+    margin: 87px 0 126px 0px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-left: 10px;
+  }
+}
+
+.testimonial-content {
+  max-width: 50%;
+  margin: 150px 0 0 130px;
+}
+
+.quote {
+  color: var(--White-200, #f7f7f7);
+
+  font-family: "Roboto Serif";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 34px;
+}
+
+.testimonial-content h1 {
+  color: var(--White-200, #f7f7f7);
+  font-family: "Angelia Devitson";
+  font-size: 60px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 70px;
+  text-transform: capitalize !important;
+  margin-left: -90px;
+  /* 116.667% */
+}
+
+.testimonial-content h4 {
+  color: var(--White-200, #f7f7f7);
+  width: 434px;
+  font-family: "Roboto Serif";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 34px;
+  margin: 100px 0 40px;
+}
+
+.customer {
+  color: var(--White-200, #f7f7f7);
+  font-family: Raleway;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 434px;
+}
+.testimonial {
+  text-align: left;
+  margin-top: 50px;
+  padding: 0;
+}
+
+.name {
+  margin-top: 37px;
+  padding: 0;
+  text-align: right;
+  font-family: "Roboto Serif";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.carousel-caption {
+  position: static;
+  padding: 0;
+  color: #ffffff;
+}
+
+.carousel {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.prev,
+.next {
+  background-size: 560px 560px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.prev {
+  background-position: left center;
+  margin-left: 355px;
+}
+
+.next {
+  background-position: right center;
+  margin-left: 20px;
+}
+
+@media (max-width: 992px) {
+  .testimonial-container {
+    justify-content: center;
+  }
+  .testimonial-content {
+    margin: 84px 0 0 35px;
+
+    h1 {
+      line-height: 50px;
+      font-size: 50px;
+      padding-top: 40px;
+      padding-left: 50px;
+    }
+
+    h4 {
+      margin: 60px 0 30px;
+    }
+  }
+
+  .name {
+    padding: 0 40px;
+  }
+  .carousel-item {
+    justify-content: left;
+
+    img {
+      width: 423px;
+      height: 395px;
+    }
+  }
+
+  .prev {
+    margin-left: 329px;
+  }
+}
+
+@media (max-width: 576px) {
+  .testimonial-container {
+    display: flex;
+    width: 100%;
+    height: 425px !important;
+    padding: 0px;
+    text-align: center;
+    position: relative;
+  }
+  .testimonial-container img {
+    display: none;
+  }
+  .testimonial-content {
+    margin-bottom: 32px;
+  }
+  .testimonial-content h1 {
+    font-family: "Angelia Devitson";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 70px;
+    margin-top: 32px;
+    margin: auto;
+    padding: 0;
+    text-align: center !important;
+    display: block;
+  }
+
+  .testimonial-container .testimonial-content h4 {
+    font-family: "Roboto Serif";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 34px;
+    margin-top: 40px;
+    text-align: center;
+  }
+  .testimonial-container .testimonial-content p {
+    font-family: Raleway, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+    margin: 20px 35px 20px 35px;
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 0;
+  }
+  .prev,
+  .next {
+    background-size: 560px 560px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .prev {
+    background-position: left center;
+    margin-left: 270px;
+  }
+
+  .next {
+    background-position: right center;
+    margin-left: 20px;
+  }
+}

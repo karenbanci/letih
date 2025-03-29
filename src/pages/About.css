@@ -63,28 +63,32 @@ p {
 
 .hero {
   display: flex;
-  flex-direction: flex-start;
+  flex-direction: row;
   justify-content: center;
   margin: 115px 0;
-  margin-left: 60px;
+  width: 100vw;
 
+  .images-container {
+    display: flex;
+    width: 50%;
+  }
 
   .we-are-letih-beauty {
     display: flex;
     flex-direction: column;
     margin: calc(115px / 2);
-    width: 550px;
+    width: 40%;
 
     .mission-vision {
       margin-top: 63px;
     }
-    h3{
+    h3 {
       letter-spacing: 4px;
       font-style: italic;
-      font-size:25px
+      font-size: 25px;
     }
-    h4{
-      font-weight:500;
+    h4 {
+      font-weight: 500;
     }
   }
 }
@@ -92,9 +96,9 @@ p {
 .our-values {
   display: flex;
   flex-direction: row-reverse;
-  justify-content: center;
-  margin: 0 auto;
-  max-width: 1500px;
+  justify-content: space-between;
+  width: 100vw;
+  padding: 100px 0;
 
   .our-values-content {
     margin-right: 140px;
@@ -103,10 +107,15 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: calc(115px / 2);
+    /* margin: calc(115px / 2); */
   }
   h4 {
     font-weight: 500;
+  }
+
+  .images-container {
+    display: flex;
+    width: 50%;
   }
 }
 
@@ -118,14 +127,16 @@ p {
   max-width: 1500px;
 
   .image-letih {
-    width: 982px;
-    height: 833px;
+    display: flex;
+    width: 576px;
+    height: 516px;
+    animation: fadeIn 2s forwards;
   }
 
   .behind-scenes-content {
     display: flex;
     flex-direction: column;
-    margin: 120px 129px;
+    margin: 370px 129px 120px;
   }
   h4 {
     font-weight: 500;
@@ -135,6 +146,78 @@ p {
     align-self: center;
     margin-top: 60px;
   }
+}
+
+.green-box {
+  position: absolute;
+  opacity: 0; /* Inicia invisível */
+  animation: fadeIn 2s forwards;
+}
+.green-box-1 {
+  top: 200px;
+  left: 128px;
+  animation-delay: 0.5s;
+}
+
+.green-box-2 {
+  top: 487px;
+  left: 336px;
+  animation-delay: 0.5s;
+}
+
+.green-box-3 {
+  margin-top: calc(-100px / 2);
+  right: calc(570px / 2);
+  animation-delay: 0.5s;
+}
+
+.green-box-4 {
+  right: calc(140px / 2);
+  margin-top: 232px;
+  animation-delay: 0.5s;
+}
+
+.green-box-5 {
+  align-self: center;
+  position: relative;
+  margin-top: 344px;
+  margin-left: 156px;
+  z-index: 0;
+  animation-delay: 0.5s;
+}
+
+.women-image {
+  position: absolute;
+  z-index: 1; /* Imagem por cima dos quadros */
+  width: 461px;
+  height: 528px;
+  opacity: 0; /* Começa invisível */
+  animation: fadeInImage 2s forwards 1.5s;
+  border-radius: 6px;
+}
+
+.women-top {
+  left: 191px;
+  top: 263px;
+}
+
+.women-middle {
+  margin-right: calc(80px / 2);
+}
+
+.women-bottom-one {
+  position: absolute;
+  margin-left: -160px;
+  z-index: 1;
+  animation: fadeInImage 2s forwards 1.5s;
+}
+
+.women-bottom-two {
+  position: absolute;
+  margin-left: 267px;
+  margin-top: 330px;
+  z-index: 2;
+  animation: fadeInImage 2s forwards 1.5s;
 }
 
 .bottom-images {
@@ -164,101 +247,112 @@ p {
   margin-top: -60px;
 }
 .bottomLineWhite {
-  background-color:white;
+  background-color: white;
   margin-top: 120px;
 }
-@media only screen and (max-width: 431px) {
-body,
-html {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  overflow-x: hidden;
-}
-.container {
-  overflow-x: hidden;
-  align-items: center;
-  margin: 0;
 
-  .h2-title {
-    font-size: 28px;
+/* Animação de fade in para os quadros verdes */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
   }
+}
 
-  .hero {
-    display: flex;
-    flex-direction: column;
+/* Animação de fade in para a imagem */
+@keyframes fadeInImage {
+  to {
+    opacity: 1;
+  }
+}
+@media only screen and (max-width: 431px) {
+  body,
+  html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+  .container {
+    overflow-x: hidden;
     align-items: center;
-    margin: 40px 0 30px 0px;
+    margin: 0;
 
-
-    img {
-      width: 358px;
-      height: 395px;
+    .h2-title {
+      font-size: 28px;
     }
 
-    .we-are-letih-beauty {
-      width: 100vw;
-      margin: 20px 16px;
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 40px 0 30px 0px;
+
+      img {
+        width: 358px;
+        height: 395px;
+      }
+
+      .we-are-letih-beauty {
+        width: 50%;
+        margin: 20px 16px;
+        align-items: center;
+
+        h1 {
+          margin: 20px 16px;
+          font-size: 28px;
+        }
+        h3 {
+          margin: 0px;
+          margin-left: 70px;
+          font-size: 18px;
+          letter-spacing: 1px;
+        }
+      }
+    }
+    .mission-vision {
+      width: 358px;
+      margin: 20px 16px 0px 16px !important;
+    }
+    .behind-scenes {
+      margin: 40px 0px 0px 0px;
       align-items: center;
 
-      h1 {
-        margin: 20px 16px;
-        font-size: 28px;
+      .image-letih {
+        width: 358px;
+        height: 362px;
       }
-      h3 {
-        margin: 0px;
-        margin-left: 70px;
-        font-size: 18px;
-        letter-spacing: 1px;
+
+      .behind-scenes-content {
+        width: 350px;
+        margin: 40px 16px;
       }
     }
-  }
-  .mission-vision {
-    width: 358px;
-    margin: 20px 16px 0px 16px !important;
-  }
-  .behind-scenes {
-    margin: 40px 0px 0px 0px;
-    align-items: center;
 
-    .image-letih {
-      width: 358px;
-      height: 362px;
+    .our-values {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 0;
+
+      .our-values-content {
+        width: 350px;
+        margin: 40px 16px;
+      }
+
+      img {
+        width: 358px;
+        height: 395px;
+      }
     }
 
-    .behind-scenes-content {
-      width: 350px;
-      margin: 40px 16px;
+    .bottom-images {
+      display: none;
     }
   }
-
-  .our-values {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-right: 0;
-
-    .our-values-content {
-      width: 350px;
-      margin: 40px 16px;
-    }
-
-    img {
-      width: 358px;
-      height: 395px;
-    }
-  }
-
-  .bottom-images {
+  .bottomLineGreen {
     display: none;
   }
-
-}
-.bottomLineGreen {
-  display: none;
-}
-.bottomLineWhite {
-  display: none;
-}
-
+  .bottomLineWhite {
+    display: none;
+  }
 }

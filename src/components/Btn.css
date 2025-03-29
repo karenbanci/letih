@@ -3,11 +3,11 @@
 .custom-button {
   display: flex;
   font-family: "Poppins";
-
   border: none;
   border-radius: 6px;
-  width: 150px;
-  height: 40px;
+  width: 232px;
+  height: 56px;
+  padding: 12px;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
@@ -16,11 +16,12 @@
   font-weight: 400;
   line-height: 28px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .green {
   background-color: var(--green-100);
-  color: var(--white-200);
+  color: var(--white-200) !important;
 }
 
 .white {
@@ -29,7 +30,13 @@
 }
 
 .green:hover {
+  background-color: var(--green-50);
+  color: var(--white-200);
+}
+
+.white:hover {
   background-color: var(--green-100);
+  color: var(--white-200);
 }
 
 @media only screen and (max-width: 430px) {

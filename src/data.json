@@ -17,7 +17,8 @@
       "id": 3,
       "title": "SERVICE",
       "submenu": [
-        { "id": 1,
+        {
+          "id": 1,
           "title": "FACIALS",
           "submenu": [
             {
@@ -69,17 +70,21 @@
         }
       ]
     },
-
     {
       "id": 5,
       "title": "CONTACT",
-      "url": "/contact"
+      "url": "/#contact"
+    },
+    {
+      "id": 6,
+      "title": "GALLERY",
+      "url": "/gallery"
     }
   ],
   "footer": {
     "title": "Blue Duck Co. All Rights Reserved.",
     "email": "letihbeauty@gmail.com",
-    "phone": "+1 (123) 456-7890",
+    "phone": "+1 (571) 525-4059",
     "social": [
       {
         "id": 1,
@@ -99,11 +104,13 @@
     ],
     "developed": {
       "title": " Developed by",
-      "name": "Karen Honorio",
-      "url": "https://karenhb.com/"
+      "karen": "Karen Honorio",
+      "karenUrl": "https://karenhb.com/",
+      "victor": "Victor Fonseca",
+      "victorUrl": "https://www.linkedin.com/in/victorfonsecas/"
     }
   },
-  "service":[
+  "service": [
     {
       "id": 1,
       "title": "DEEP CLEASING",
@@ -120,10 +127,9 @@
       "url": "/service/facial/glowfacial"
     }
   ],
-  "singIn":
-  {
-      "id": 1,
-      "title": "SING IN",
-      "url": "/singIn"
-    }
+  "myAccount": {
+    "id": 1,
+    "title": "MY ACCOUNT",
+    "url": "/myAccount"
+  }
 }
